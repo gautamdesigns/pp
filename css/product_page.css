@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
 	--green: #046a38;
 	--theme: #ff671f;
@@ -328,6 +329,16 @@ section {
 .footer .credits span {
 	color: var(--theme);
 }
+button {
+	font-family: inherit;
+	cursor: pointer;
+	background: #1a1a1a;
+	color: #f9f9f9;
+	border: 0;
+	border-radius: 8px;
+	padding: 20px 36px;
+	font-size: 16px;
+}
 
 .modal-background {
 	position: fixed;
@@ -340,8 +351,9 @@ section {
 	opacity: 0;
 	visibility: hidden;
 	transform: scale(1, 1);
-	background: rgba(0, 0, 0, 0.5);
-	transition: 0.5s;
+	background-color: hsla(0, 0%, 0%, 0);
+	backdrop-filter: blur(5px);
+	transition: all 0.5s linear;
 }
 
 body.open .modal-background {
@@ -351,14 +363,18 @@ body.open .modal-background {
 }
 
 .modal {
+	z-index: 999;
 	position: fixed;
-	top: 50%;
+	top: 56%;
 	left: 50%;
 	background: #37353b;
 	color: #f9f9f9;
-	padding: 48px 40px;
-	border-radius: 12px;
-	width: 300px;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	padding-left: 4.5rem;
+	border-radius: 1rem;
+	width: 45vw;
+	height: 85vh;
 	translate: -50% -50%;
 	opacity: 0;
 	visibility: hidden;
@@ -413,7 +429,189 @@ p {
 		visibility: visible;
 	}
 }
+.popup {
+	display: none;
+	position: fixed;
+	z-index: 999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(0, 0%, 10%, 0);
+	backdrop-filter: blur(100px);
+	overflow: auto;
+}
 
+.popup-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: 5% auto;
+	padding: 20px;
+	width: 80%;
+	max-width: 800px;
+}
+
+.close {
+	color: #f00;
+	float: right;
+	font-size: 5rem;
+	font-weight: bold;
+	cursor: pointer;
+	translate: 10rem -2rem;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.image-container {
+	position: relative;
+}
+
+.popup-trigger {
+	cursor: pointer;
+}
+
+.image-container:hover .popup-trigger {
+	opacity: 0.8;
+}
+.slider {
+	width: auto;
+	height: auto;
+	border-radius: 0;
+	overflow: hidden;
+}
+.slides {
+	width: 900%;
+	height: 58rem;
+	display: flex;
+}
+
+.slides input {
+	display: none;
+}
+
+.slide {
+	width: 20%;
+	transition: 0.5s linear;
+}
+
+.slide img {
+	width: auto;
+	height: 90%;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual {
+	position: absolute;
+	width: 80rem;
+	margin-top: -4rem;
+	display: flex;
+	justify-content: center;
+}
+
+.manual-btn {
+	border: 2px solid #40d3dc;
+	padding: 5px;
+	translate: -15rem;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 1s linear;
+}
+
+.manual-btn:not(:last-child) {
+	margin-right: 40px;
+}
+
+.manual-btn:hover {
+	background: #40d3dc;
+}
+
+#radio1:checked ~ .first {
+	margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+	margin-left: -14%;
+}
+
+#radio3:checked ~ .first {
+	margin-left: -33%;
+}
+
+#radio4:checked ~ .first {
+	margin-left: -60%;
+}
+
+#radio5:checked ~ .first {
+	margin-left: -80%;
+}
+#radio6:checked ~ .first {
+	margin-left: -100%;
+}
+#radio7:checked ~ .first {
+	margin-left: -120%;
+}
+#radio8:checked ~ .first {
+	margin-left: -140%;
+}
+/*css for automatic navigation*/
+
+.navigation-auto {
+	position: absolute;
+	display: flex;
+	width: 80rem;
+	justify-content: center;
+	margin-top: 46rem;
+}
+
+.navigation-auto div {
+	border: 2px solid #40d3dc;
+	padding: 5px;
+	border-radius: 10px;
+	translate: -15rem 8rem;
+	transition: 1s linear;
+}
+
+.navigation-auto div:not(:last-child) {
+	margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+	background: #40d3dc;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+	background: #40d3dc;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+	background: #40d3dc;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+	background: #40d3dc;
+}
+
+#radio5:checked ~ .navigation-auto .auto-btn5 {
+	background: #40d3dc;
+}
+
+#radio6:checked ~ .navigation-auto .auto-btn6 {
+	background: #40d3dc;
+}
+
+#radio7:checked ~ .navigation-auto .auto-btn7 {
+	background: #40d3dc;
+}
+
+#radio8:checked ~ .navigation-auto .auto-btn8 {
+	background: #40d3dc;
+}
 .product-container {
 	display: flex;
 	background: #eee;
@@ -440,7 +638,9 @@ p {
 	width: 100%;
 	height: auto;
 }
-
+.product-image img:hover {
+	opacity: 0.8;
+}
 .product-details {
 	width: 50rem;
 	display: flex;
